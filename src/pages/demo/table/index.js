@@ -1,15 +1,12 @@
 export default {
-    name: 'liuyan',
+    name: 'table',
     data() {
         return {
             list: [],
-            total: 0,
-            query: {
-                page_size: 10,
-                page: 1,
-                is_up: '',
-                content: '',
-            },
+            selectList: [],
+            page: 1,
+            size: 10,
+            total: 30,
         };
     },
     methods: {
@@ -19,29 +16,16 @@ export default {
         },
         // 用于更新一些数据
         async update() {
-            const res = await this.$http.post('/feedback/list', this.query);
-            if (res.code >= 1) {
-                this.total = res.data.total;
-                this.list = res.data.list
-            }
+            this.list = new Array(this.total).fill('').map((el, i) => ({ id: i })).splice((this.page - 1) * this.size, this.size);
+            // const res = await this.$http.post('', {});
         },
-        async del(id) {
-            try {
-                await this.$confirm('确认删除？', '提示');
-            } catch (error) {
-                return false;
+        change1(v, row) {
+            this.selectList = this.selectList.filter(el => el != row.id)
+            if (v) {
+                this.selectList.push(row.id);
             }
 
-            const res = await this.$http.post('/feedback/del', {
-                id: id
-            });
-            if (res.code >= 0) {
-                this.$message.success('操作成功！');
-            } else {
-                this.$message.error('操作失败！');
-            }
-            this.update();
-        },
+        }
     },
     // 计算属性
     computed: {},
@@ -72,10 +56,13 @@ export default {
     directives: {},
     // 一个对象，键是需要观察的表达式，值是对应回调函数。
     watch: {
-        'query.page'() {
+        'selectList'() {
+            console.warn(this.selectList);
+        },
+        'size'() {
             this.update();
         },
-        'query.page_size'() {
+        'page'() {
             this.update();
         }
     },

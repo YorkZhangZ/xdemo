@@ -10,11 +10,11 @@ export default {
   data() {
     return {};
   },
-  mounted() {},
+  mounted() { },
   methods: {},
   watch: {
-    $route(to) {},
-    active(v) {}
+    $route(to) { },
+    active(v) { }
   }
 };
 </script>

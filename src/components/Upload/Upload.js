@@ -22,9 +22,7 @@ export default {
             this.$emit('input', file.data.url);
             this.$emit('on-success', file.data.url);
         },
-     
-        
-    },  
+    },
     // 计算属性
     computed: {},
     // 包含 Vue 实例可用过滤器的哈希表。

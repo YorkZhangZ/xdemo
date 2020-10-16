@@ -2,8 +2,8 @@
   <div class="default">
     <div class="nav-box">
       <div class="logo-box">
-        <div class="title">xshop</div>
-        <div class="sub-title">管理系统</div>
+        <div class="title">demo</div>
+        <div class="sub-title">demo</div>
       </div>
       <o-menu></o-menu>
     </div>
@@ -11,7 +11,8 @@
       <el-header height="50px">
         <el-button round @click="signOut">退出登录</el-button>
       </el-header>
-      <nuxt keep-alive class="view-box" />
+      <!-- keep-alive  -->
+      <nuxt class="view-box" />
     </div>
   </div>
 </template>
