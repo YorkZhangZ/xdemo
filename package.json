@@ -13,9 +13,10 @@
     "cross-env": "^7.0.2",
     "echarts": "^4.9.0",
     "element-ui": "^2.13.2",
+    "monaco-editor": "^0.21.2",
     "nuxt": "^2.14.6",
-    "v-charts": "^1.19.0",
     "pinyin": "^2.9.1",
+    "v-charts": "^1.19.0",
     "vue": "^2.6.12",
     "vue-area-linkage": "^5.1.0"
   },

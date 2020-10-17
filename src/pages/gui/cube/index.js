@@ -6,6 +6,7 @@ export default {
             isShow: false,
             activeNode: null,
             activeGroup: null,
+            isBorder: true,
         };
     },
     methods: {
@@ -16,6 +17,7 @@ export default {
         // 用于更新一些数据
         async update() {
             this.addGroup();
+            this.show(this.groups[0], this.groups[0].nodes[0]);
         },
         show(group, node) {
             this.isShow = true;
@@ -70,7 +72,20 @@ export default {
                 config: {
                     style: {},
                     img: '',
-                }
+                    event: {
+                        model: '',
+                        router: {
+                            path: '',
+                            other: ''
+                        },
+                        url: {
+                            path: '',
+                        },
+                        script: {
+                            value: '',
+                        }
+                    }
+                },
             }
         },
         nodeClose() {
