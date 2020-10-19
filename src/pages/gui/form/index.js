@@ -1,13 +1,7 @@
 export default {
-    name: 'table',
+    name: 'form',
     data() {
-        return {
-            list: [],
-            selectList: [],
-            page: 1,
-            size: 10,
-            total: 30,
-        };
+        return {};
     },
     methods: {
         // 用于初始化一些数据
@@ -16,15 +10,29 @@ export default {
         },
         // 用于更新一些数据
         async update() {
-            this.list = new Array(this.total).fill('').map((el, i) => ({ id: i })).splice((this.page - 1) * this.size, this.size);
             // const res = await this.$http.post('', {});
+            // Make an instance of two and place it on the page.
+            var elem = document.getElementById('draw-shapes');
+            var params = { width: 285, height: 200 };
+            var two = new Two(params).appendTo(elem);
+
+            // two has convenience methods to create shapes.
+            var circle = two.makeCircle(72, 100, 50);
+            var rect = two.makeRectangle(213, 100, 100, 100);
+
+            // The object returned has many stylable properties:
+            circle.fill = '#FF8000';
+            circle.stroke = 'orangered'; // Accepts all valid css color
+            circle.linewidth = 5;
+
+            rect.fill = 'rgb(0, 200, 255)';
+            rect.opacity = 0.75;
+            rect.noStroke();
+
+            // Don't forget to tell two to render everything
+            // to the screen
+            two.update();
         },
-        change1(v, row) {
-            this.selectList = this.selectList.filter(el => el != row.id)
-            if (v) {
-                this.selectList.push(row.id);
-            }
-        }
     },
     // 计算属性
     computed: {},
@@ -54,17 +62,7 @@ export default {
     // 包含 Vue 实例可用指令的哈希表。
     directives: {},
     // 一个对象，键是需要观察的表达式，值是对应回调函数。
-    watch: {
-        'selectList'() {
-            console.warn(this.selectList);
-        },
-        'size'() {
-            this.update();
-        },
-        'page'() {
-            this.update();
-        }
-    },
+    watch: {},
     // 组件列表
     components: {},
 };

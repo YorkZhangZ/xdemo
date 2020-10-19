@@ -23,16 +23,16 @@
         </div>
       </div>
       <div class="text-center" style="padding:10px">
-        <el-button @click="addGroup()">addGroup</el-button>
+        <el-button @click="addGroup()">添加行</el-button>
       </div>
     </div>
-    <el-drawer :modal="false" title="节点配置" :visible.sync="isShow" :before-close="nodeClose()">
+    <div class="prop-config">
       <div style="padding:20px" v-if="activeNode">
         <el-form label-position="right" label-width="80px">
           <el-form-item label="id">
             <span class="text-info" style="font-size:12px">{{activeNode.id}}</span>
           </el-form-item>
-          <el-form-item label="img">
+          <el-form-item label="图片">
             <el-upload
               drag
               class="upload-demo"
@@ -45,7 +45,6 @@
                 将文件拖到此处，或
                 <em>点击上传</em>
               </div>
-              <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
             </el-upload>
           </el-form-item>
           <el-form-item label="触发事件">
@@ -88,7 +87,15 @@
           </el-form-item>
         </el-form>
       </div>
-    </el-drawer>
+      <div class="empty-text" v-else>点击节点以配置</div>
+    </div>
+    <!-- <el-drawer
+      size="500"
+      :modal="false"
+      title="节点配置"
+      :visible.sync="isShow"
+      :before-close="nodeClose()"
+    ></el-drawer>-->
   </div>
 </template>
 <script src="./index.js"></script>

@@ -17,7 +17,7 @@ export default {
         // 用于更新一些数据
         async update() {
             this.addGroup();
-            this.show(this.groups[0], this.groups[0].nodes[0]);
+            // this.show(this.groups[0], this.groups[0].nodes[0]);
         },
         show(group, node) {
             this.isShow = true;
@@ -52,7 +52,7 @@ export default {
             this.groups.push(group);
         },
         delGruop(group) {
-            if (group.length > 1) {
+            if (this.groups.length > 1) {
                 this.groups = this.groups.filter(el => el.id != group.id);
             } else {
                 this.$message.info('必须保留一个');
@@ -82,7 +82,7 @@ export default {
                             path: '',
                         },
                         script: {
-                            value: '',
+                            value: '//在这里输入脚本',
                         }
                     }
                 },
