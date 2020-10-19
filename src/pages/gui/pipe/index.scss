@@ -1,0 +1,18 @@
+@import "@/styles/variable.scss";
+
+#pipe {
+    padding: $page-padding;
+
+    .button {
+        line-height: 1.2;
+        padding: 10px 15px;
+        font-size: 16px;
+        border-radius: 5px;
+        background-color: $color-blue;
+        color: #fff;
+        display: inline-block;
+        cursor: pointer;
+    }
+}
+
+#pipe /deep/ {}

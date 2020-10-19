@@ -21,14 +21,17 @@ export default {
   },
   watch: {
     value() {
-      this.model = this.value;
-      this.monacoInstance.setValue(this.model);
+      if (this.model != this.value) {
+        this.model = this.value;
+        this.monacoInstance.setValue(this.model);
+      }
     }
   },
   mounted() {
     this.monacoInstance = monaco.editor.create(document.getElementById(this.id), {
       value: this.value,
-      language: "javascript"
+      language: "javascript",
+      theme: 'vs-dark'
     });
 
     this.monacoInstance.onDidChangeModelContent((event) => {

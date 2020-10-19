@@ -1,7 +1,13 @@
+import Pipe from './Pipe'
+
 export default {
-    name: 'form',
+    name: 'pipe',
     data() {
-        return {};
+        return {
+            components: [],
+            msg: 'pipe',
+            count: 1
+        };
     },
     methods: {
         // 用于初始化一些数据
@@ -11,27 +17,30 @@ export default {
         // 用于更新一些数据
         async update() {
             // const res = await this.$http.post('', {});
-            // Make an instance of two and place it on the page.
-            var elem = document.getElementById('draw-shapes');
-            var params = { width: 285, height: 200 };
-            var two = new Two(params).appendTo(elem);
-
-            // two has convenience methods to create shapes.
-            var circle = two.makeCircle(72, 100, 50);
-            var rect = two.makeRectangle(213, 100, 100, 100);
-
-            // The object returned has many stylable properties:
-            circle.fill = '#FF8000';
-            circle.stroke = 'orangered'; // Accepts all valid css color
-            circle.linewidth = 5;
-
-            rect.fill = 'rgb(0, 200, 255)';
-            rect.opacity = 0.75;
-            rect.noStroke();
-            // Don't forget to tell two to render everything
-            // to the screen
-            two.update();
         },
+        addComponent() {
+            this.components.push(this.getComponent());
+        },
+        async runPipe() {
+            let pipe = new Pipe(this.components.map(el => el.script));
+            const res = await pipe.run(this);
+            if (res !== true) {
+                console.warn('通道结果：截止执行');
+            } else {
+                console.warn('通道结果：继续执行');
+            }
+        },
+        getComponent() {
+            return {
+                id: this.$getRandom(32),
+                name: 'component',
+                script: `
+async (ctx, next) => {
+    return await next();
+}
+                `
+            }
+        }
     },
     // 计算属性
     computed: {},
