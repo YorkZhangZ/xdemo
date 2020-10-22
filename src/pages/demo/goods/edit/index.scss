@@ -1,0 +1,23 @@
+@import "@/styles/variable.scss";
+
+#edit {
+    padding: $page-padding;
+
+    .prop-group {
+        margin-bottom: 10px;
+
+        .prop-group-title {
+            font-weight: bold;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .prop-list {
+            display: flex;
+
+            .prop-item {}
+        }
+    }
+}
+
+#edit /deep/ {}

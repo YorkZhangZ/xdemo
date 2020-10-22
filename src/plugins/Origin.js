@@ -49,6 +49,7 @@ Date.prototype.Format = function (fmt) { //author: meizz
      * @return 产生的随机字符串
      */
 Vue.prototype.$getRandom = new Random().getRandom;
+Vue.prototype.$getNumber = new Random().getNumber;
 
 //复制内容
 Vue.prototype.$copy = function (str) {

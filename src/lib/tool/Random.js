@@ -7,4 +7,12 @@ export default class Random {
         }
         return result;
     }
+    getNumber(length = 5, prefix = '') {
+        const chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+        let result = prefix;
+        while (result.length < length) {
+            result += chars[Math.floor(Math.random() * chars.length)];
+        }
+        return result;
+    }
 }

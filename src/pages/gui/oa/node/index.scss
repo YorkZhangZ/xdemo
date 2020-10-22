@@ -1,0 +1,90 @@
+@import "@/styles/variable.scss";
+
+#node {
+    padding: $page-padding;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+
+
+
+    .view {
+        position: relative;
+        min-width: 500px;
+
+        .gui {
+            position: absolute;
+        }
+    }
+
+    .node-list {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .node {
+            width: 200px;
+            height: 100px;
+            box-shadow: 1px 1px 10px rgba($color: #000000, $alpha: 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            background-color: #ffffff;
+            padding: 20px;
+            box-sizing: border-box;
+            position: relative;
+
+            .num {
+                background-color: #f6f6f6;
+                border-radius: 3px;
+                line-height: 1;
+                padding: 3px 5px;
+
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                font-size: 11px;
+                color: #666;
+            }
+
+            .node-name {
+                font-size: 14px;
+                text-align: center;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                overflow: hidden;
+                color: #666;
+                line-height: 1.2;
+            }
+
+            .pin-list {
+                position: absolute;
+                left: 100%;
+                top: 0;
+                color: #666;
+                padding-left: 10px;
+
+                a {
+                    display: flex;
+                }
+
+                .pin-item {
+                    display: flex;
+                    align-items: center;
+
+                    .pin-id {
+                        margin-left: 3px;
+                        font-size: 11px;
+                    }
+                }
+            }
+        }
+
+
+    }
+}
+
+#node /deep/ {}

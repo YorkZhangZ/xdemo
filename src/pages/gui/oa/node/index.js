@@ -1,12 +1,8 @@
-import Pipe from './Pipe'
-
 export default {
-    name: 'pipe',
+    name: 'node',
     data() {
         return {
-            components: [],
-            msg: 'pipe',
-            count: 1
+            nodes: []
         };
     },
     methods: {
@@ -16,30 +12,47 @@ export default {
         },
         // 用于更新一些数据
         async update() {
-            // const res = await this.$http.post('', {});
-        },
-        addComponent() {
-            this.components.push(this.getComponent());
-        },
-        async runPipe() {
-            let pipe = new Pipe(this.components.map(el => el.script));
-            const res = await pipe.run(this);
-            if (res !== true) {
-                console.warn('通道结果：截止执行');
-            } else {
-                console.warn('通道结果：继续执行');
-            }
+
+            let nodes = new Array(20).fill('').map((el, i) => this.getNode(i));
+            nodes.forEach(el => {
+                el.pins = [
+                    this.getPin(1, 10),
+                    this.getPin(2, 11),
+                ];
+            })
+            this.nodes = nodes;
+
+            // this.initGUI();
 
         },
-        getComponent() {
+        // studio
+        initGUI() {
+            let elem = document.getElementById('studio');
+            let params = { width: 285, height: 200 };
+            let two = new Two(params).appendTo(elem);
+
+            two.makePath(10, 10, 20, 20, 30, 30);
+
+            two.update();
+        },
+        getNode(id = this.$getNumber()) {
             return {
-                id: this.$getRandom(32),
-                name: 'component',
-                script: `
-async (ctx, next) => {
-    return await next();
-}
-                `
+                id: id,
+                name: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+                pins: []
+            }
+        },
+        getPin(id = this.$getNumber(), targetId = '') {
+            return {
+                id: id,
+                name: 'pin',
+                targetId: targetId,//对应的流程id
+                condition: [
+                    {
+                        form: '1',
+                        field: 'name',
+                    }
+                ],//进行下一步的条件
             }
         }
     },
