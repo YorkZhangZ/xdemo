@@ -60,24 +60,43 @@ export default {
 
             let props = groups.map(g => g.props.map(p => p.name));
 
-            props.forEach(prop => {
-                console.warn(prop.join('\t'));
-            });
+            console.log(props)
 
-            let test = props.reduce((a, b) => {
-                console.warn('a', a);
-                console.warn('b', b);
+            // let test = props.reduce((a, b) => {
+            //     console.log('a', a);
+            //     console.log('b', b);
+            //     let ret = [];
+            //     a.forEach((a) => {
+            //         console.log("70:",a)
+            //         b.forEach((b) => {
+            //             console.log("72:",b);
+            //             ret.push(a.concat([b]));
+            //         });
+            //     });
+            //     console.log('ret:',ret)
+            //     return ret;
+            // }, [[]]);
+
+
+
+            let test=[[]];
+            props.forEach(propsRes=>{
                 let ret = [];
-                a.forEach((a) => {
-                    b.forEach((b) => {
-                        ret.push(a.concat([b]));
+                test.forEach( testRes => {
+                    console.log("85:",testRes)
+                    propsRes.forEach((b) => {
+                        console.log("b:",b);
+                        ret.push(testRes.concat([b]));
                     });
                 });
-                return ret;
-            }, [[]]);
-            test.forEach(el => {
-                console.warn(el.join('\t'));
-            });
+                console.log('ret:',ret)
+                test=ret;
+            })
+
+
+
+            console.log(test)
+            
 
 
             let skus = test.map(el => {
@@ -91,8 +110,6 @@ export default {
                     })),
                 }
             });
-
-            console.warn(skus);
 
             this.form.skus = skus;
             // this.handleTable();
